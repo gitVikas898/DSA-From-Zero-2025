@@ -1,4 +1,4 @@
-function isValid(s,t){
+export function isValid(s,t){
 
     if(s.length !== t.length) return false;
 
@@ -13,7 +13,6 @@ function isValid(s,t){
 
         lookup[char] -=1;
     }
-
     return true
 }
 

@@ -1,32 +1,40 @@
 var maximumSubarraySum = function(nums, k) {
-    
     let set = new Set();
     let currentSum = 0;
-    let maxSum = 0
+    let maxSum = 0;
+    let start = 0;
 
-    for(let val of nums){
-        set.add(val);
+    
+    for(let end = 0;end<nums.length;end++){
+
+        //duplicate removal
+
+        while(set.has(nums[end])){
+            set.delete(nums[start]);
+            currentSum -=nums[start];
+            start++;
+        }
+
+
+        set.add(nums[end]);
+        currentSum +=nums[end];
+
+        if(end-start+1 === k){
+            maxSum = Math.max(currentSum,maxSum);
+            set.delete(nums[start]);
+            currentSum -= nums[start];
+            start++;
+        }
     }
-
-    let myArray = [];
-
-    for(let val of set){
-        myArray.push(val);
-    }
-
-    for(let i =0;i<k;i++){
-        currentSum+=myArray[i];
-    }
-
-    maxSum = currentSum;
-
-    for(let i=k;i<myArray.length;i++){
-        currentSum = currentSum+myArray[i]-myArray[i-k];
-        maxSum = Math.max(currentSum,maxSum);
-    }
-
     return maxSum;
-
 };
+let nums , k;
 
-console.log(maximumSubarraySum([4,4,4],3))
+nums = [1,5,4,2,9,9,9], k = 3
+
+console.log("Test#1 results",maximumSubarraySum(nums,k));
+
+
+nums = [4,4,4], k = 3
+
+console.log("Test#2 results",maximumSubarraySum(nums,k));

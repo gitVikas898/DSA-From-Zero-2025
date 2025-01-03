@@ -16,7 +16,7 @@ var maximumSubarraySum = function(nums, k) {
         }
 
 
-        set.add(nums[end]);
+        set.add(nums[end]);     
         currentSum +=nums[end];
 
         if(end-start+1 === k){

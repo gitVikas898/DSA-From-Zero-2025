@@ -11,6 +11,10 @@ int prefix_sum(vector<int>&arr , int start , int end){
     for(int i = 1;i<n;i++){
         prefix[i] = prefix[i-1]+ arr[i];
     }
+
+    for(int val : prefix){
+        cout<<val<<" , ";
+    }
     if(start == 0){
         return prefix[end];
     }
@@ -21,7 +25,7 @@ int prefix_sum(vector<int>&arr , int start , int end){
 }
 
 int main(){
-    vector<int>input = {2,4,3,6,7,8};
+    vector<int>input = {1,2,0,3};
     int start = 1;
     int end = 3;
 

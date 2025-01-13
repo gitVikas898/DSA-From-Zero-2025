@@ -1,7 +1,8 @@
 function sort(arr){
+    const n = arr.length;
     let zero = 0,ones = 0, two=0;
 
-    for(let i=0;i<arr.length;i++){
+    for(let i=0;i<n;i++){
         if(arr[i] === 0){
             zero++;
         }
@@ -13,15 +14,20 @@ function sort(arr){
         }
     }
 
-    for(let i = 0;i<zero;i++){
+    for(i=0;i<zero;i++){
         arr[i] = 0;
     }
 
-    for(let i = zero+1;i<ones;i++){
+    for(i=zero;i<zero+ones;i++){
         arr[i] = 1;
     }
 
-    for(let i = 0;i<zero;i++){
-        arr[i] = 0;
+    for(i=zero+ones;i<n;i++){
+        arr[i] = 2;
     }
+
+    return arr;
 }
+
+console.log(sort([2,0,2,1,1,0]));
+console.log(sort([2,0,1]))

@@ -1,23 +1,13 @@
-import java.util.Scanner;
 
 public class Product {
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter the Size of the Array ");
-        int size = scan.nextInt();
-       
-        int [] input = {2,3,-2,4};
-        for(int i = 0;i<size;i++){
-            input[i] = scan.nextInt();
-        }
+        int [] input = {-3,-1,-1};
         System.out.println(findMaxProduct(input));
-
-        scan.close();
     }   
     
     public static int findMaxProduct(int[]arr){
         int currentProd =1;
-        int maxprod = 0;
+        int maxprod = -1 / 0;
         int n = arr.length;
         if(n==1){
             return arr[0];

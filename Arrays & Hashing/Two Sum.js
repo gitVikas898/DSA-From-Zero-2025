@@ -14,12 +14,16 @@ function twoSum(nums,target){
             hashMap[nums[i]] = i;
         }
     }
+
+    console.log(hashMap)
+
     return -1;
          
 
 
 }
 //Test #1
+twoSum([3,4,5,6],7)
 console.log("Result of Test #1 : ",twoSum([3,4,5,6],7));
 
 //Test #2

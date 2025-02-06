@@ -155,6 +155,24 @@ class SLL {
         this.length--;
         return temp.value;
     }
+    
+    reverse(){
+        let node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+
+        let next;
+        let prev = null;
+
+        for(let i=0;i<this.length;i++){
+            next = node.next;   
+            node.next = prev;
+            prev = node;
+            node = next;
+        }
+        return this;
+    }
+
 }
 
 
@@ -165,23 +183,28 @@ mylist.push("30")
 mylist.push("40")
 mylist.push("50")
 
-mylist.printList();
+// mylist.printList();
 
-console.log(mylist.pop());
+// console.log(mylist.pop());
 
-mylist.printList();
+// mylist.printList();
 
-console.log(mylist.shift());
-mylist.printList();
+// console.log(mylist.shift());
+// mylist.printList();
 
-mylist.unShift("8")
+// mylist.unShift("8")
+// mylist.printList()
+
+// console.log(mylist.get(2));
+// console.log(mylist.set("17",3))
+// mylist.printList()
+
+// mylist.insert(3,"24");
+// mylist.printList();
+// console.log(mylist.remove(3))
+// mylist.printList();
+
+// mylist.reverse();
+// mylist.printList();
 mylist.printList()
-
-console.log(mylist.get(2));
-console.log(mylist.set("17",3))
-mylist.printList()
-
-mylist.insert(3,"24");
-mylist.printList();
-console.log(mylist.remove(3))
-mylist.printList();
+console.log(mylist.findMiddle())

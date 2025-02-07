@@ -40,6 +40,50 @@ function Node(value) {
   }
 
 
+  //Given the head of a linked list, return the node where the cycle begins. If there is no cycle, return null.
+
+var detectCycle = function(head) {
+    // first find a cycle if cycle is there then detect the node 
+
+    let slow = head;
+    let fast = head;
+
+    while(fast !== null && fast.next !== null){
+      slow = slow.next;
+      fast = fast.next;
+
+      // if true means there is a cycle;
+      if(slow === fast){
+
+          let slow = head;
+
+          while(slow !== fast){
+            fast = fast.next 
+            slow = slow.next;
+          }
+          return slow;
+
+      }
+    }
+
+    return null
+};
+
+var detectCycleNaive = function(head){
+  let map = new Map();
+
+  let temp = head;
+
+  while(temp!==null){
+      if(map.has(temp)){
+        return temp;
+      }
+
+      map.set(temp,1);
+      temp = temp.next;
+  }
+  return null;
+}
 
 function judge(){
     const head = [1,2,3,4,5];
@@ -49,7 +93,10 @@ function judge(){
         SLL=appendNode(SLL,head[i]);
     }
 
-    let result = middleNode(SLL);
+    // let result = middleNode(SLL);
+    // console.log(result.value);
+
+    let result = detectCycleNaive(SLL);
     console.log(result.value);
 
 }

@@ -39,6 +39,24 @@ function Node(value) {
         return slow
   }
 
+  var deleteMidNode = function(head){
+      if(!head || head.next === null)return null;
+
+      let slow = head;
+      let fast = head;
+      let prev = null;
+
+      while(fast && fast.next){
+        prev = slow
+        slow = slow.next;
+        fast = fast.next.next;
+      }
+
+      prev.next = slow.next;
+
+      return head;
+  }
+
 
   //Given the head of a linked list, return the node where the cycle begins. If there is no cycle, return null.
 
@@ -93,11 +111,10 @@ function judge(){
         SLL=appendNode(SLL,head[i]);
     }
 
-    // let result = middleNode(SLL);
-    // console.log(result.value);
+      
+      let result = deleteMidNode(SLL);
+      console.log(result);
 
-    let result = detectCycleNaive(SLL);
-    console.log(result.value);
 
 }
 

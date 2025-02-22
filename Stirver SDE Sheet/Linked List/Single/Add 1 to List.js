@@ -40,10 +40,28 @@ function appendNode(head, value) {
     return prev;
   }
 
+var addOne = function(head){
+    head = reverseLinkedList(head);
+    let temp = head;
+    let carry = 1;
+    while(temp!== null){
+        let sum = temp.value + carry;
+        temp.value = sum%10;
+        carry = Math.floor(sum/10);
+        temp  = temp.next;
+    }
+    if(carry){
+        let newNode = new Node(carry);
+        head = reverseLinkedList(head);
+        newNode.next = head;
+        return newNode;
+    }
+    return reverseLinkedList(head);
+}
 
 
 function judge(){
-    const head = [1,2,3,4,5];
+    const head = [9,9,9,9,9];
     let SLL = new Node(head[0]);
 
     for(let i=1;i<head.length;i++){
@@ -53,10 +71,8 @@ function judge(){
     console.log("Original List:")
     printList(SLL);  
 
-    SLL = reverseLinkedList(SLL);
-    
-    console.log("New List")
-    printList(SLL)
+    SLL = addOne(SLL);
+    printList(SLL);
 
 }
 judge()

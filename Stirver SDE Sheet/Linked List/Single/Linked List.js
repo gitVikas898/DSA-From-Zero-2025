@@ -103,6 +103,23 @@ var detectCycleNaive = function(head){
   return null;
 }
 
+var reverseLinkdeList = function(node){
+  let stack = []
+  let temp = node;
+  while(temp !== null){
+    stack.push(temp.value);
+    temp = temp.next;
+  }
+  temp = node;
+
+  while(temp!==null){
+    temp.value = stack.pop();
+    temp = temp.next;
+  }
+
+  return node;
+}
+
 function judge(){
     const head = [1,2,3,4,5];
     let SLL = new Node(head[0]);
@@ -111,10 +128,9 @@ function judge(){
         SLL=appendNode(SLL,head[i]);
     }
 
-      
-      let result = deleteMidNode(SLL);
-      console.log(result);
-
+    printList(SLL);
+    reverseLinkdeList(SLL);
+    printList(SLL);  
 
 }
 

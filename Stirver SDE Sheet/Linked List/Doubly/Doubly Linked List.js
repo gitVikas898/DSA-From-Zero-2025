@@ -73,17 +73,44 @@ function reverseEff(head){
     }
     return last.prev
 }
+function deleteAllK(head,key){
+    if(!head){
+        return null
+    }
 
+    let temp = head;
+    while(temp!==null){
+        if(temp.value === key){
+            if(temp === head){
+                head = head.next;
+            }
+
+            let nextNode = temp.next;
+            let prevNode = temp.prev;
+
+            if(nextNode) nextNode.prev = prevNode;
+            if(prevNode) prevNode.next = nextNode;
+
+            temp = nextNode;
+        }else{
+            temp = temp.next;
+        }
+    }
+    return head;
+}
 function judge(){
-    const head = [1,2,3,4,5];
+    const head = [2,2,10,8,4,2,3,2];
     let DLL = new Node(head[0]);
     for(let i=1;i<head.length;i++){
         appendNode(DLL,head[i]);
     }
 
+    const k = 2
+
     printList(DLL);
     // reverseNaive(DLL);
-   const newHead =  reverseEff(DLL);
-    printList(newHead);
+//    const newHead =  reverseEff(DLL);
+    const deletedK = deleteAllK(DLL,k);
+    printList(deletedK);
 }
 judge()

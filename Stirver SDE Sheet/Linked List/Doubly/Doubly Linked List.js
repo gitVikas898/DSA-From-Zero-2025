@@ -32,7 +32,7 @@ function printList(head){
         current= current.next;
     }
 
-    console.log(result.join("⇄"));
+    console.log(result.join(" ⇄ "));
 
 }
 
@@ -98,8 +98,64 @@ function deleteAllK(head,key){
     }
     return head;
 }
+
+function twoSum(head,key){
+    let temp1 = head;
+    
+    let result = [];
+
+    while(temp1!==null){
+        let temp2 = temp1.next;
+        while(temp2 !==null){
+            let temp = [];
+            if(temp2.value + temp1.value === key){
+                temp.push(temp1.value , temp2.value);
+                result.push(temp);
+            }
+            temp2 = temp2.next;
+        }
+        temp1 = temp1.next;
+
+    }
+    return result;
+}
+
+function findTail(head){
+    let curr = head;
+    while(curr.next !== null){
+        curr = curr.next;
+    }
+    return curr;
+}
+function twoSumEff(head,key){
+    let left = head;
+    let right = findTail(head)
+
+    let result = []
+
+    while(left.value < right.value){
+        let temp = []
+        let sum = (left.value+right.value);
+        if( sum === key){
+            temp.push(left.value , right.value);
+            left = left.next 
+            right = right.prev
+        }else if (sum < key){
+            left = left.next
+        }else{
+            right = right.prev
+        }
+        if(temp.length>0){
+            result.push(temp)
+        }
+       
+    }
+
+    return result;
+}
+
 function judge(){
-    const head = [2,2,10,8,4,2,3,2];
+    const head = [1,2,4,5,6,8,9];
     let DLL = new Node(head[0]);
     for(let i=1;i<head.length;i++){
         appendNode(DLL,head[i]);
@@ -110,7 +166,10 @@ function judge(){
     printList(DLL);
     // reverseNaive(DLL);
 //    const newHead =  reverseEff(DLL);
-    const deletedK = deleteAllK(DLL,k);
-    printList(deletedK);
+    //const deletedK = deleteAllK(DLL,k);
+    //printList(deletedK);
+
+    // console.log(twoSum(DLL,7))
+    console.log(twoSumEff(DLL,7))
 }
 judge()

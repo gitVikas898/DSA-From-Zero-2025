@@ -13,10 +13,10 @@ function reverseInGroups(nums,k){
             nums[right] = temp
             left++;
             right--;
+            console.log(nums)
         }
     }
     return nums;
 
 }
-
-console.log("Test1",reverseInGroups([1,2,3,4,5],6));
+console.log("Test1",reverseInGroups([1,2,3,4,5],2));

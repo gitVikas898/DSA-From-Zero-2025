@@ -154,22 +154,56 @@ function twoSumEff(head,key){
     return result;
 }
 
+function removeDuplicates(head){
+    let temp = head;
+    while(temp!==null && temp.next !==null){
+        let nextNode = temp.next;
+
+        while(nextNode!== null && nextNode.value === temp.value){
+            nextNode = nextNode.next;
+        }
+
+        temp.next = nextNode;
+        if(nextNode) nextNode.prev = temp;
+        temp = temp.next
+    }
+    return head;
+}
+
+
 function judge(){
-    const head = [1,2,4,5,6,8,9];
+    const head = [1,1,1,2,3,4];
     let DLL = new Node(head[0]);
     for(let i=1;i<head.length;i++){
         appendNode(DLL,head[i]);
     }
 
-    const k = 2
+    const head2 = [1,2,2,3,3,4,4]
 
+    let DLL2 = new Node(head2[0]);
+    for(let i=1;i<head2.length;i++){
+        appendNode(DLL2,head2[i])
+    }
+
+    removeDuplicates(DLL);
     printList(DLL);
+
+    removeDuplicates(DLL2)
+    printList(DLL2);
+
+    // const k = 2
+
+    // printList(DLL);
+    
     // reverseNaive(DLL);
 //    const newHead =  reverseEff(DLL);
     //const deletedK = deleteAllK(DLL,k);
     //printList(deletedK);
 
     // console.log(twoSum(DLL,7))
-    console.log(twoSumEff(DLL,7))
+    // 
+    
+    
+    
 }
 judge()

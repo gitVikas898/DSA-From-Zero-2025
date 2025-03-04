@@ -55,7 +55,7 @@ function reverseNaive(head){
 
     return head;
 }
-
+//reverse dll
 function reverseEff(head){
     if(!head || head.next == null){
         return head;
@@ -73,6 +73,8 @@ function reverseEff(head){
     }
     return last.prev
 }
+
+//delete all items = key
 function deleteAllK(head,key){
     if(!head){
         return null
@@ -127,6 +129,8 @@ function findTail(head){
     }
     return curr;
 }
+
+//find target Sum question
 function twoSumEff(head,key){
     let left = head;
     let right = findTail(head)
@@ -153,7 +157,7 @@ function twoSumEff(head,key){
 
     return result;
 }
-
+//Remove Duplicates Question
 function removeDuplicates(head){
     let temp = head;
     while(temp!==null && temp.next !==null){
@@ -170,26 +174,56 @@ function removeDuplicates(head){
     return head;
 }
 
+function rotateLinkedListByk(head,k){
+    let tail = head;
+    let len = 1;
+
+    while(tail.next !==null){
+        tail = tail.next;
+        len = len+1;
+    }
+
+    k = k%len
+    if(k === 0){
+        return head;
+    }
+ 
+
+    let temp = head;
+    for(let i=0;i<len-k-1;i++){
+        temp = temp.next
+    }
+
+    let newHead = temp.next;
+    temp.next = null
+    tail.next = head;
+   
+
+    return newHead;
+
+}
 
 function judge(){
-    const head = [1,1,1,2,3,4];
+    const head = [1,2];
     let DLL = new Node(head[0]);
     for(let i=1;i<head.length;i++){
         appendNode(DLL,head[i]);
     }
-
-    const head2 = [1,2,2,3,3,4,4]
-
-    let DLL2 = new Node(head2[0]);
-    for(let i=1;i<head2.length;i++){
-        appendNode(DLL2,head2[i])
-    }
-
-    removeDuplicates(DLL);
     printList(DLL);
+    // const head2 = [1,2,2,3,3,4,4]
 
-    removeDuplicates(DLL2)
-    printList(DLL2);
+    // let DLL2 = new Node(head2[0]);
+    // for(let i=1;i<head2.length;i++){
+    //     appendNode(DLL2,head2[i])
+    // }
+
+    // removeDuplicates(DLL);
+    // printList(DLL);
+
+    // removeDuplicates(DLL2)
+    // printList(DLL2);
+
+
 
     // const k = 2
 
@@ -203,6 +237,10 @@ function judge(){
     // console.log(twoSum(DLL,7))
     // 
     
+
+    const k = 1;
+    const newHead = rotateLinkedListByk(DLL,k);
+    printList(newHead);
     
     
 }
